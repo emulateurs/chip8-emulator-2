@@ -16,8 +16,9 @@ void Chip8::tick()
     const byte left_byte = memory[memory.program_counter];
     const byte right_byte = memory[memory.program_counter + 1];
 
-    memory.program_counter += 2;
+    const int before_pc = memory.program_counter;
     process(left_byte, right_byte);
+    if (before_pc == memory.program_counter) memory.program_counter+=2;
 }
 
 void Chip8::process(byte left_opcode, byte right_opcode)
